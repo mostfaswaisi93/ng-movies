@@ -1,0 +1,24 @@
+@import url('../details/details.component.css');
+.example-card
+{
+  background: linear-gradient(to bottom, #050022 0%, #849db6 100%);
+  color: darkseagreen;
+  width: 100% !important;
+}
+.grid-card
+{
+  display: grid;
+  grid-template-columns: repeat(2,50%);
+  gap: 10px;
+}
+.example-header-image {
+  background-size: cover;
+}
+@media (max-width: 768px) {
+  .grid-card
+  {
+    display: grid;
+    grid-template-columns: repeat(1,100%);
+    gap: 10px;
+  }
+}

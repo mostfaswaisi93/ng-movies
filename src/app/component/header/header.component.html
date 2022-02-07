@@ -1,0 +1,71 @@
+<mat-toolbar style="z-index: 9999999999">
+  <mat-toolbar-row style="z-index: 9999999" class="px-5">
+    <span class="prand" routerLink=""><i class="fas fa-tv"></i> I movies</span>
+    <span class="example-spacer"></span>
+    <!--------------------------form Search------------------------------------------>
+    <button mat-button (click)="toggleS()" class="d-none button-toggle "><i [ngClass]="toggleSearch ? 'fas fa-search' : 'fas fa-times'"></i></button>
+    <form class="form-search d-flex" [style.display]="toggleSearch ? 'none' : 'flex !important'">
+      <input type="text" class="form-control"  placeholder="Search" name="query" [(ngModel)]="query">
+      <button mat-raised-button class="border-radius" color="primary" [routerLink]="['search/', query ]"><i class="fas fa-search"></i></button>
+    </form>
+    <!----------------------------menu register---------------------------------->
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="belowMenu"
+      aria-label="Example icon-button with a menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu
+      style="display: grid; justify-content: center"
+      #belowMenu="matMenu"
+      yPosition="below"
+    >
+      <button mat-menu-item routerLink="register" title="signUp">
+        <i class="fas fa-sign-in-alt fa-2x"></i>
+      </button>
+      <button mat-menu-item routerLink="login" title="logIn">
+        <i class="far fa-user-circle fa-2x"></i>
+      </button>
+    </mat-menu>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon mat-button (click)="snav.toggle()">menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  <!------------------------      Loading     ----------------------------->
+  <div class="Loading" *ngIf="Loading | async">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</mat-toolbar>
+<!--------------------------------------      sidenav     --------------------------------->
+<mat-sidenav-container style="z-index: 99" class="example-container">
+  <mat-sidenav mode="over" from="right" closed #snav>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 100%;
+      "
+    >
+      <a
+        class="links"
+        *ngFor="let link of links"
+        [routerLink]="link"
+        routerLinkActive="active-left"
+      >
+        {{ link }}
+      </a>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

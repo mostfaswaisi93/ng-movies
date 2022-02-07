@@ -1,0 +1,18 @@
+.message
+{
+  background-color: azure;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px #999
+}
+mat-label , input
+{
+  color: #fafafa;
+}
+@media (max-width:576px)
+{
+.ws-100
+{
+  width: 90% !important;
+}
+}

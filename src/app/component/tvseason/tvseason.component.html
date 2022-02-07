@@ -1,0 +1,62 @@
+<div class="py-5 background" style="min-height: 100vh;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)) , url('https://image.tmdb.org/t/p/w500{{getTvseason?.poster_path}}');">
+  <div class="container my-5">
+    <div class="w-100 d-flex justify-content-between p-3 cursor-pointer">
+      <h1>episodes season {{getTvseason?.season_number}}</h1>
+      <div class="button-icon-toggle d-flex">
+        <button mat-raised-button class="not-active" (click)="BigWidthHeight()" [class]="toggleSize ? '' : 'active-icon'"><i class="fas fa-th-large" ></i></button>
+        <button mat-raised-button class="not-active" (click)="WidthHeight()" [class]="toggleSize ? 'active-icon' : ''"><i class="fas fa-th "></i></button>
+      </div>
+    </div>
+    <section class="all-movies">
+      <div class="div-card row">
+        <ng-container *ngFor="let item of getTvseason?.episodes">
+          <div
+            class="card"
+            [class]="toggleSize ? 'WidthHeight m-2' : 'BigWidthHeight m-4' "
+            [routerLink]="['/Episode/'+AllSeasonTvDetails?.id+'/'+item.season_number+'/'+item.episode_number]"
+          >
+            <img
+              class="img"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item.still_path }}"
+              alt=""
+            />
+            <span>{{ item.vote_average |  number : '1.1-1'}}</span>
+            <div class="p-2 text-center original_title">
+              <p style="cursor: pointer;">{{ item.name }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+    <!--------------------------------All seasons----------------------------------------->
+    <section class="section-carousel">
+      <div class="w-100 d-flex p-2" [routerLink]="'/seasons/'+AllSeasonTvDetails?.id">
+        <h2 class="mb-4 cursor-pointer">all seasson</h2>
+        <a style="text-decoration: none; " class="cursor-pointer"><i class="fas fa-chevron-right"></i></a>
+      </div>
+      <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of AllSeasonTvDetails?.seasons">
+        <div class="card" [routerLink]="'/Tvseason/'+AllSeasonTvDetails?.id+'/'+item.season_number">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;" >{{ item.name }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+
+    </section>
+  </div>
+</div>

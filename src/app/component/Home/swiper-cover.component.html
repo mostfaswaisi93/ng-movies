@@ -1,0 +1,168 @@
+<div class="py-5"  style="position: relative; background-image: url('../../../assets/home1.gif');background-attachment: fixed;background-size:content;">
+  <section class="my-5">
+    <swiper
+      [effect]="'coverflow'"
+      [grabCursor]="true"
+      [centeredSlides]="true"
+      [slidesPerView]="'auto'"
+      [loop]="true"
+      [loopFillGroupWithBlank]="true"
+      [coverflowEffect]="{
+        rotate: 50,
+        stretch: 0,
+        depth: 300,
+        modifier: 1,
+        slideShadows: true
+      }"
+      [autoplay]="{
+        delay: 1500,
+        disableOnInteraction: true
+      }"
+      class="mySwiper2"
+    >
+      <ng-template
+        swiperSlide
+        class="width-slide h-100 p-0"
+        *ngFor="let item of TrendingAll"
+      >
+        <div class="h-100 w-100" [routerLink]="['/Movies', item.id ,{name:item.original_title}]">
+          <img
+            class="img-carousel cursor-pointer h-100 w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div class=" text-center original_title">
+            <p style="cursor: pointer;">
+              {{
+                item.original_title
+                  ? "" + item.original_title + ""
+                  : "" + item.original_name + ""
+              }}
+            </p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+  </section>
+  <div class="container">
+        <!-----------------------BUTTONS--------------------->
+    <!----------I need do position sticky--------------->
+    <div class="buttons d-flex align-items-center my-3">
+      <button mat-fab color="primary" style="margin-right: 10px;" aria-label="Example icon button with a home icon" routerLink="/">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button style="border-radius: 20px;font-size: 20px;margin-right: 10px;" mat-raised-button color="primary" *ngFor="let link of links"[routerLink]="'/'+link"
+      routerLinkActive="active-bottom">{{link}}</button>
+    </div>
+    <!-------------------------FORM----------------------------->
+    <section class="w-100 d-flex justify-content-center">
+      <mat-card>
+        <h3 class="Trend">Trend</h3>
+        <form #myForm="ngForm" (ngSubmit)="view(myForm)" class="row">
+          <mat-form-field class="my-2">
+            <mat-label>Choose an type</mat-label>
+            <mat-select  matNativeControl required name="type" ngModel>
+              <mat-option *ngFor="let item of type" [value]="item.value">{{
+                item.value
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="my-2">
+            <mat-label>Choose an time</mat-label>
+            <mat-select matNativeControl required name="time" ngModel>
+              <mat-option *ngFor="let item of time" [value]="item.value">{{
+                item.value
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button
+            class="m-2 "
+            mat-raised-button
+            type="submit"
+            color="primary"
+          >
+            view
+          </button>
+        </form>
+      </mat-card>
+    </section>
+
+    <!--------------------MOVIES TOP RATED--------------------->
+    <section class="section-carousel">
+      <div
+        class="w-100 d-flex p-3 cursor-pointer"
+        [routerLink]="['/category/', 'top_rated']"
+      >
+        <h2>TOP RATED MOVIES</h2>
+        <a style="text-decoration: none; color: #999"
+          ><i class="fas fa-chevron-right"></i
+        ></a>
+      </div>
+      <swiper
+        [slidesPerView]="'auto'"
+        [spaceBetween]="20"
+        [slidesPerGroup]="1"
+        [loop]="false"
+        [loopFillGroupWithBlank]="true"
+        [navigation]="true"
+        class="mySwiper"
+      >
+        <ng-template swiperSlide *ngFor="let item of Toprated">
+          <div
+            class="card"
+            [routerLink]="['/Movies', item.id, { name: item.original_title }]"
+          >
+            <img
+              class="img-carousel w-100"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+              alt=""
+            />
+            <span>{{ item.vote_average | number: "1.1-1" }}</span>
+            <div style="height: 50px" class="p-2 text-center">
+              <p style="cursor: pointer">{{ item.original_title }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </section>
+    <!--------------------TvToprated--------------------->
+    <section class="section-carousel">
+      <div
+        class="w-100 d-flex p-3 cursor-pointer"
+        [routerLink]="['/tvcategory', 'top_rated']"
+      >
+        <h2>TOP RATED TV</h2>
+        <a style="text-decoration: none"
+          ><i class="fas fa-chevron-right"></i
+        ></a>
+      </div>
+      <swiper
+        [slidesPerView]="'auto'"
+        [spaceBetween]="20"
+        [slidesPerGroup]="1"
+        [loop]="false"
+        [loopFillGroupWithBlank]="true"
+        [navigation]="true"
+        class="mySwiper"
+      >
+        <ng-template swiperSlide *ngFor="let item of TvToprated">
+          <div
+            class="card"
+            [routerLink]="['/tv', item.id, { name: item.original_name }]"
+          >
+            <img
+              class="img-carousel w-100"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+              alt=""
+            />
+            <span>{{ item.vote_average | number: "1.1-1" }}</span>
+            <div style="height: 50px" class="p-2 text-center">
+              <p style="cursor: pointer">{{ item.original_name }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+@import '../movies/home.component.css';
+::ng-deep  .background
+{
+  background-attachment: fixed !important;
+  background-size: 100% 150% !important;
+}

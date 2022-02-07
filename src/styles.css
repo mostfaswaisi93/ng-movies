@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+*
+{
+  letter-spacing: 1px;
+}
+::-webkit-scrollbar
+{
+  background: #000;
+  width: 10px;
+}
+::-webkit-scrollbar-thumb
+{
+  background-color: aliceblue;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.bg-light
+{
+  background-color: rgb(5, 0, 34) !important;
+}
+.carousel-arrow
+{
+  height: 80px !important;
+  top: 40% !important;
+}
+.carousel-arrow-next
+{
+  border-radius: 10px 0 0 10px !important;
+  right: 0 !important;
+}
+.carousel-arrow-prev
+{
+  border-radius: 0 10px 10px 0 !important;
+  left: 0 !important;
+}
+.carousel-cells .carousel-cell img
+{
+  object-fit: fill !important;
+}
+@media (max-width:568px) {
+  .carousel-cell
+{
+  width: 150px !important;
+}
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
