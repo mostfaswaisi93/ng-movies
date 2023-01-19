@@ -1,0 +1,27 @@
+<div class="py-5" style="min-height: 100vh;background-image: url('../../../assets/home1.gif');background-attachment: fixed;background-size: content;">
+  <div class="container my-5">
+    <div class="w-100 d-flex justify-content-between p-3 cursor-pointer">
+      <h1>{{title | uppercase}}</h1>
+      <div class="button-icon-toggle d-flex">
+        <button mat-raised-button class="not-active" (click)="BigWidthHeight()" [class]="toggleSize ? '' : 'active-icon'"><i class="fas fa-th-large" ></i></button>
+        <button mat-raised-button class="not-active" (click)="WidthHeight()" [class]="toggleSize ? 'active-icon' : ''"><i class="fas fa-th "></i></button>
+      </div>
+    </div>
+    <section class="all-movies">
+      <div class="div-card row">
+        <ng-container *ngFor="let item of category">
+          <div class="card" [class]="toggleSize ? 'WidthHeight m-2' : 'BigWidthHeight m-4' "  [routerLink]="['/Movies', item.id ,{name:item.original_title}]">
+            <img
+              class="img"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+              alt="img"
+            />
+            <span>{{ item.vote_average | number: "1.1-1" }}</span>
+            <div class="p-2 text-center original_title">
+              <p style="cursor: pointer;">{{ item.original_title }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+</div>

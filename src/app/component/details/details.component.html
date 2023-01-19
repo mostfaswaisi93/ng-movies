@@ -1,0 +1,144 @@
+<div style="padding: 64px 0 ;position: relative; background-image: url('../../../assets/home1.gif');background-attachment: fixed;background-size: content;">
+
+  <section class="movies-details" *ngFor="let item of moviesDetails">
+      <div class="divcard" style="background-size: cover;" [style.background-image]="'url(https://image.tmdb.org/t/p/w500'+ item?.backdrop_path+')'">
+        <div class="rgba"></div>
+        <div class="cards">
+            <div class="poster-img">
+              <img
+              class="img"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item?.poster_path }}"
+              alt="img"
+            />
+            </div>
+            <div class="details-content">
+              <h3>{{ item?.title }} ({{item?.release_date | date: 'Y'}})</h3>
+              <div class="genres-date">
+                <a class="date"><i class="far fa-calendar-alt"></i> {{item?.release_date | date: 'dd | MM | Y'}}</a>
+                <div class="py-1">
+                  <a *ngFor="let gener of IDmoviesDetails?.genres">{{gener?.name}},</a>
+                </div>
+              </div>
+              <div class="countries py-2">
+                <p>{{item?.production_countries[0]?.name}} ({{item?.production_countries[0]?.iso_3166_1}})</p>
+              </div>
+              <div class="rate pb-4">
+                {{ item?.vote_average }}/10
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                vote count
+                ({{item?.vote_count}})
+              </div>
+              <div class="overview">
+                <h4>overview</h4>
+                <p>{{item?.overview}}</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+    <!---------------------------videos---------------------------------->
+    <section style="z-index: 1;" class="w-100 py-5 text-center">
+      <h3>{{ getMovievideo?.results[0]?.name }}</h3>
+      <iframe class="ifram" [src]="url+getMovievideo?.results[0]?.key | safePipe " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+    <!------------------------moviesrecommendations------------------------------>
+    <section *ngIf="moviesrecommendations?.results.length > 0" class="section-carousel">
+      <div class="w-100 d-flex p-3" [routerLink]="['/recommenditons/'+'Movies/'+IDmoviesDetails?.id]">
+        <h2 class="mb-4 cursor-pointer">Recommendations</h2>
+        <a style="text-decoration: none;" class="cursor-pointer"><i class="fas fa-chevron-right"></i></a>
+      </div>
+      <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of moviesrecommendations?.results">
+        <div class="card"[routerLink]="['/Movies/', item.id ,{name:item.original_title}]">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;">{{ item.original_title }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+    </section>
+    <!------------------------moviesimilar------------------------------>
+    <section  *ngIf="moviesimilar?.length > 0" class="section-carousel">
+      <div class="w-100 d-flex p-3"  [routerLink]="'/similar/'+'Movies/'+IDmoviesDetails?.id">
+        <h2 class="mb-4 cursor-pointer">Similar</h2>
+        <a style="text-decoration: none;" class="cursor-pointer"><i class="fas fa-chevron-right"></i></a>
+      </div>
+      <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of moviesimilar">
+        <div class="card"[routerLink]="['/Movies/', item.id ,{name:item.original_title}]">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;" [routerLink]="['/Movies/', item.id ,{name:item.original_title}]">{{ item.original_title }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+    </section>
+    <!----------------------------Reviews--------------------------------------->
+  <div class="reviews">
+    <h2>Reviews</h2>
+    <section class="d-flex justify-content-start row px-3 my-4">
+      <mat-card class="example-card" *ngFor="let item of reviews; let index = index">
+        <mat-card-header>
+          <div mat-card-avatar style="background-image: url('https://image.tmdb.org/t/p/w500/{{item.author_details.avatar_path}}');" class="example-header-image"></div>
+          <mat-card-title>{{ reviews[index].author }}</mat-card-title>
+          <mat-card-subtitle><p><i class="far fa-clock"></i> :{{ reviews[index].updated_at | date: 'hh:mm:ss a' }}</p></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="pContent" #myDiv  >{{ reviews[index].content}}</p>
+          <br>
+          <a class="btn mb-2" *ngIf="reviews[index].content.length > '350'" (click)='myDiv.classList.toggle("toggleSee")'  >show {{ myDiv.classList.contains('toggleSee') ? 'less' : 'more ...' }}</a>
+          <br>
+          <p><i class="far fa-calendar-alt"></i> :{{ reviews[index].updated_at | date: 'dd | MM | Y' }}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="my-5" *ngIf="reviews?.length == 0">
+        <mat-card-content class="py-5 text-center" >
+          <p>
+            Not Reviews
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,152 @@
+<div class="py-6" style="position: relative; background-image: url('../../../assets/home1.gif');background-attachment: fixed;background-size: content">
+  <div class="container">
+    <!----------------------------------MOVIES--------------------------------------------------->
+    <div class="w-100 d-flex justify-content-between p-3 cursor-pointer">
+      <h1>Movies</h1>
+      <div class="button-icon-toggle d-flex">
+        <button mat-raised-button class="not-active" (click)="BigWidthHeight()" [class]="toggleSize ? '' : 'active-icon'"><i class="fas fa-th-large" ></i></button>
+        <button mat-raised-button class="not-active" (click)="WidthHeight()" [class]="toggleSize ? 'active-icon' : ''"><i class="fas fa-th "></i></button>
+      </div>
+    </div>
+    <section class="all-movies ">
+      <div class="div-card row">
+        <ng-container *ngFor="let item of movies" >
+          <div  [class]="toggleSize ? 'WidthHeight m-2' : 'BigWidthHeight m-4' "  class="card" [routerLink]="['/Movies', item.id ,{name:item.original_title}]" >
+            <img
+              class="img"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+              alt="img"
+            />
+            <span>{{ item.vote_average | number: "1.1-1" }}</span>
+            <div class="p-2 d-flex align-items-center justify-content-center text-center original_title">
+              <p style="cursor: pointer;">{{ item.original_title }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+    <!--------------------TOP RATED--------------------->
+    <section class="section-carousel">
+      <div class="w-100 d-flex p-3 cursor-pointer" [routerLink]="['/category/','top_rated']">
+        <h2>TOP RATED</h2>
+        <a style="text-decoration: none; color: #999;"><i class="fas fa-chevron-right"></i></a>
+      </div>
+      <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of Toprated">
+        <div class="card" [routerLink]="['/Movies', item.id ,{name:item.original_title}]">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;" >{{ item.original_title }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+    </section>
+    <!--------------------Up coming--------------------->
+    <section class="section-carousel">
+      <div class="w-100 d-flex p-3 cursor-pointer" [routerLink]="['/category/','upcoming']">
+        <h2 class="mb-4">upcoming</h2>
+        <a 
+            style="text-decoration: none; color: #999;"><i class="fas fa-chevron-right"></i></a>
+      </div>
+      <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of upcoming">
+        <div class="card" [routerLink]="['/Movies', item.id ,{name:item.original_title}]">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;" >{{ item.original_title }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+    </section>
+    <!--------------------NowPlaying--------------------->
+    <section class="section-carousel">
+      <div class="w-100 d-flex  p-3 cursor-pointer" [routerLink]="['/category/','now_playing']">
+        <h2>now_playing</h2>
+        <a  
+            style="text-decoration: none; color: #999;"><i class="fas fa-chevron-right"></i></a>
+      </div>
+      <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of NowPlaying">
+        <div class="card"  [routerLink]="['/Movies', item.id ,{name:item.original_title}]">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;">{{ item.original_title }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+    </section>
+    <!--------------------getpopular--------------------->
+      <section class="section-carousel">
+        <div class="w-100 d-flex p-3 cursor-pointer" [routerLink]="['/category/','popular']">
+          <h2>popular</h2>
+          <a style="text-decoration: none; color: #999;"><i class="fas fa-chevron-right"></i></a>
+        </div>
+        <swiper
+        [slidesPerView]="'auto'"
+        [spaceBetween]="20"
+        [slidesPerGroup]="1"
+        [loop]="false"
+        [loopFillGroupWithBlank]="true"
+        [navigation]="true"
+        class="mySwiper"
+      >
+        <ng-template swiperSlide  *ngFor="let item of getpopular">
+          <div class="card" [routerLink]="['/Movies/', item.id ,{name:item.original_title}]">
+            <img
+              class="img-carousel w-100"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+              alt=""
+            />
+            <span>{{ item.vote_average | number: "1.1-1" }}</span>
+            <div style="height: 50px;" class="p-2 text-center">
+              <p style="cursor: pointer;" >{{ item.original_title }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+      </section>
+  </div>
+</div>
+

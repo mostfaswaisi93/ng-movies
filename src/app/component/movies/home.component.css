@@ -1,0 +1,238 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1::before
+{
+  content: '';
+  border-left: aliceblue solid 3px;
+  position: relative;
+  top: 0;
+  left: -10px;
+}
+h1
+{
+  padding-left: 15px;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: aliceblue;
+}
+/*************************************/
+.mat-raised-button
+{
+  min-width: max-content !important;
+  padding: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+}
+.svg-inline--fa
+{
+  font-size: 19px;
+  color: rgb(5, 0, 34);
+}
+.active-icon
+{
+  background-color: #fff !important;
+}
+.not-active
+{
+  background-color: #999;
+}
+/*********************card*************/
+.div-card
+{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+.card
+{
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 5%), 0 2px 4px 1px rgb(0 0 0 / 9%);
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  color: aliceblue;
+  padding: 0;
+  background: none;
+}
+.WidthHeight
+{
+  width: 200px;
+  height: 250px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.BigWidthHeight
+{
+  width: 300px;
+  height: 350px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.img
+{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.original_title
+{
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, .7);
+  height: 25%;
+  width: 100%;
+  color: #fff;
+
+}
+span
+{
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(233, 178, 38)" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  padding: 5px 0;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  color:#000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*******************Carousel***********/
+.section-carousel
+{
+  border-radius: 10px;
+  padding: 10px 0 0 0;
+  margin: 50px 0;
+  box-shadow: 0 10 20 25% #fff ,  0 -10 20 25% #fff ;
+  background: linear-gradient(to top,rgba(0,0,0,0.1) 50%, rgba(12, 23, 84, 0.5) 100%);
+}
+h2::before
+{
+  content: '';
+  border-left: aliceblue solid 3px;
+  position: relative;
+  top: 0;
+  left: -10px;
+}
+h2
+{
+  padding-left: 10px;
+  margin-right: 20px;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: aliceblue;
+}
+.fa-chevron-right
+{
+  font-size: 30px;
+  color: #999;
+}
+.fa-chevron-right:hover
+{
+  color: aliceblue;
+}
+.mySwiper  {
+  width: 100%;
+  height: 250px;
+}
+::ng-deep  .swiper-slide{
+  width: 150px;
+  height: 100%;
+  padding: 10px 0;
+}
+::ng-deep  .swiper-button-next , ::ng-deep .swiper-button-prev
+{
+  background-color: aliceblue;
+  height: 80px ;
+  width: 35px;
+  right: 0;
+  top: 45%;
+  border-radius: 10px 0 0 10px ;
+}
+::ng-deep .swiper-button-prev
+{
+  left: 0;
+  border-radius: 0 10px 10px 0;
+}
+::ng-deep .swiper-button-next:after , ::ng-deep.swiper-button-prev:after{
+  font-size: 24px;
+  font-weight: 900;
+}
+form
+{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+.Trend
+{
+  position: absolute;
+  top: -35px;
+  left: -35px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  background-color: steelblue;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  align-items: center;
+  color: aliceblue;
+}
+.img-carousel
+{
+  position: relative;
+  height: 180px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+.cursor-pointer
+{
+  cursor: pointer;
+}
+.py-6
+{
+  padding: 100px 0;
+}
+@media (max-width: 786px)
+{
+  form
+  {
+    flex-direction: column;
+  }
+}
+@media (max-width: 576px)
+{
+  h1
+  {
+    font-size: 20px;
+  }
+  h2
+  {
+    font-size: 20px;
+  }
+  .fa-chevron-right
+  {
+    font-size: 20px;
+    position: relative;
+    top: 7px;
+  }
+}

@@ -1,0 +1,9 @@
+@import '../register/register.component.css';
+.clip-path
+{
+  clip-path: polygon(0 0, 100% 100%, 100% 0);
+}
+.bg-error
+{
+  background-color: rgba(209, 103, 124,.5);
+}

@@ -1,0 +1,177 @@
+<div class="py-6" style="position: relative; background-image: url('../../../assets/home1.gif');background-attachment: fixed;background-size:content;">
+  <div class="container">
+    <div class="w-100 d-flex justify-content-between p-3 cursor-pointer">
+      <h1>TV</h1>
+      <div class="button-icon-toggle d-flex">
+        <button mat-raised-button class="not-active" (click)="BigWidthHeight()" [class]="toggleSize ? '' : 'active-icon'"><i class="fas fa-th-large" ></i></button>
+        <button mat-raised-button class="not-active" (click)="WidthHeight()" [class]="toggleSize ? 'active-icon' : ''"><i class="fas fa-th "></i></button>
+      </div>
+    </div>
+    <section class="all-tv">
+      <div class="div-card row">
+        <ng-container *ngFor="let item of tv">
+          <div class="card " [class]="toggleSize ? 'WidthHeight m-2' : 'BigWidthHeight m-4' "  [routerLink]="['/tv' , item.id,{name:item.original_name}]">
+            <img
+              class="img"
+              src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+              alt="img"
+            />
+            <span>{{ item.vote_average |  number : '1.1-1' }}</span>
+            <div class="p-2 text-center original_title">
+              <p style="cursor: pointer;">{{ item.original_name }}</p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+<!--
+            <section class="section-carousel">
+              <div class="w-100 d-flex p-3 cursor-pointer" [routerLink]="['/tvcategory','on_the_air']">
+                <h2>On The Air</h2>
+                <a style="text-decoration: none;"><i class="fas fa-chevron-right"></i></a>
+              </div>
+                    <swiper
+              [slidesPerView]="'auto'"
+              [spaceBetween]="20"
+              [slidesPerGroup]="1"
+              [loop]="false"
+              [loopFillGroupWithBlank]="true"
+              [navigation]="true"
+              class="mySwiper"
+            >
+              <ng-template swiperSlide  *ngFor="let item of OnTheAir">
+                <div class="card" [routerLink]="['/tv' , item.id,{name:item.original_name}]">
+                  <img
+                    class="img-carousel w-100"
+                    src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+                    alt=""
+                  />
+                  <span>{{ item.vote_average | number: "1.1-1" }}</span>
+                  <div style="height: 50px;" class="p-2 text-center">
+                    <p style="cursor: pointer;">{{ item.original_name }}</p>
+                  </div>
+                </div>
+              </ng-template>
+            </swiper>
+            </section>
+
+        <section class="section-carousel">
+          <div class="w-100 d-flex p-3 cursor-pointer" [routerLink]="['/tvcategory','airing_today']">
+            <h2>Airing Today</h2>
+            <a style="text-decoration: none;"><i class="fas fa-chevron-right"></i></a>
+          </div>
+                <swiper
+          [slidesPerView]="'auto'"
+          [spaceBetween]="20"
+          [slidesPerGroup]="1"
+          [loop]="false"
+          [loopFillGroupWithBlank]="true"
+          [navigation]="true"
+          class="mySwiper"
+        >
+          <ng-template swiperSlide  *ngFor="let item of AiringToday">
+            <div class="card" [routerLink]="['/tv' , item.id,{name:item.original_name}]">
+              <img
+                class="img-carousel w-100"
+                src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+                alt=""
+              />
+              <span>{{ item.vote_average | number: "1.1-1" }}</span>
+              <div style="height: 50px;" class="p-2 text-center">
+                <p style="cursor: pointer;" >{{ item.original_name }}</p>
+              </div>
+            </div>
+          </ng-template>
+        </swiper>
+        </section> -->
+    <!--------------------TvToprated--------------------->
+    <section class="section-carousel">
+      <div class="w-100 d-flex p-3 cursor-pointer" [routerLink]="['/tvcategory','top_rated']">
+        <h2>TOP RATED</h2>
+        <a style="text-decoration: none;"><i class="fas fa-chevron-right"></i></a>
+      </div>
+            <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of TvToprated">
+        <div class="card" [routerLink]="['/tv' , item.id,{name:item.original_name}]">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;" >{{ item.original_name }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+    </section>
+        <!--------------------Tvpopular--------------------->
+        <section class="section-carousel">
+          <div [routerLink]="['/tvcategory/','popular']" class="w-100 d-flex p-3 cursor-pointer">
+            <h2>popular</h2>
+            <a style="text-decoration: none;"><i class="fas fa-chevron-right"></i></a>
+          </div>
+          <swiper
+          [slidesPerView]="'auto'"
+          [spaceBetween]="20"
+          [slidesPerGroup]="1"
+          [loop]="false"
+          [loopFillGroupWithBlank]="true"
+          [navigation]="true"
+          class="mySwiper"
+        >
+          <ng-template swiperSlide  *ngFor="let item of Tvpopular">
+            <div class="card"  [routerLink]="['/tv' , item.id,{name:item.original_name}]">
+              <img
+                class="img-carousel w-100"
+                src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+                alt=""
+              />
+              <span>{{ item.vote_average | number: "1.1-1" }}</span>
+              <div style="height: 50px;" class="p-2 text-center">
+                <p style="cursor: pointer;">{{ item.original_name }}</p>
+              </div>
+            </div>
+          </ng-template>
+        </swiper>
+        </section>
+    <!--------------------Latest--------------------->
+    <section class="section-carousel">
+      <div class="w-100 d-flex p-3">
+        <h2>lasts</h2>
+      </div>
+      <swiper
+      [slidesPerView]="'auto'"
+      [spaceBetween]="20"
+      [slidesPerGroup]="1"
+      [loop]="false"
+      [loopFillGroupWithBlank]="true"
+      [navigation]="true"
+      class="mySwiper"
+    >
+      <ng-template swiperSlide  *ngFor="let item of latest">
+        <div class="card" [routerLink]="['/tv' , item.id,{name:item.original_name}]">
+          <img
+            class="img-carousel w-100"
+            src="{{ 'https://image.tmdb.org/t/p/w500' + item.poster_path }}"
+            alt=""
+          />
+          <span>{{ item.vote_average | number: "1.1-1" }}</span>
+          <div style="height: 50px;" class="p-2 text-center">
+            <p style="cursor: pointer;">{{ item.original_name }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+    </section>
+  </div>
+</div>
